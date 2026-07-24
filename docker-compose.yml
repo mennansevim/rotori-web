@@ -1,0 +1,20 @@
+# Rotori tanıtım sitesi — Raspberry Pi 5'te nginx:alpine ile serve.
+# Cloudflare Tunnel host üzerinden `http://localhost:3080` → rotori-web
+# olarak yönlendirir; container dış networke doğrudan expose edilmez.
+name: rotori-web
+
+services:
+  web:
+    build: .
+    container_name: rotori-web
+    ports:
+      # Host 3080 → container 80. Cloudflare Tunnel bu portu okur.
+      # Mevcut agora:3003 + dify:3000 ile çakışmaz.
+      - "3080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/healthz || exit 1"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
