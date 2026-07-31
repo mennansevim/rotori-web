@@ -189,6 +189,53 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 .xp{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;color:var(--ink-2)}
 .xp .track{flex:1;height:9px;border-radius:6px;background:var(--card-2);overflow:hidden}
 .xp .fill{height:100%;background:linear-gradient(90deg,var(--matcha),var(--gold));border-radius:6px;transition:width 1.2s var(--ease)}
+
+/* Explorer mode — Apple-like Japan map that advances with page scroll */
+.explorer-scr{position:relative;flex:1;overflow:hidden;background:#DDEAF0;color:var(--ink);isolation:isolate}
+.explorer-map{position:absolute;inset:0 0 118px;background:radial-gradient(circle at 73% 30%,rgba(255,255,255,.92),transparent 22%),linear-gradient(155deg,#EAF3F6 0%,#D8E9EF 54%,#CFE3EA 100%);overflow:hidden}
+.explorer-map::before{content:"";position:absolute;inset:0;opacity:.38;background-image:linear-gradient(rgba(255,255,255,.72) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.72) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(#000,rgba(0,0,0,.35) 75%,transparent)}
+.explorer-map::after{content:"日本";position:absolute;right:16px;top:105px;font-size:34px;font-weight:700;letter-spacing:.16em;color:rgba(53,82,88,.08);writing-mode:vertical-rl}
+.jp-land{position:absolute;z-index:1;background:linear-gradient(145deg,#D9E5D4,#BFD2B8);border:1px solid rgba(91,119,86,.16);box-shadow:0 5px 12px rgba(67,100,108,.08),inset 0 1px rgba(255,255,255,.7)}
+.jp-land.hokkaido{right:13%;top:20%;width:58px;height:47px;clip-path:polygon(22% 0,65% 8%,100% 34%,80% 71%,45% 100%,8% 78%,0 35%)}
+.jp-land.honshu-a{right:18%;top:34%;width:104px;height:29px;border-radius:56% 30% 54% 44%;transform:rotate(28deg)}
+.jp-land.honshu-b{left:29%;top:45%;width:125px;height:31px;border-radius:50% 34% 58% 40%;transform:rotate(25deg)}
+.jp-land.honshu-c{left:15%;top:54%;width:84px;height:27px;border-radius:58% 36% 48% 52%;transform:rotate(18deg)}
+.jp-land.shikoku{left:31%;top:62%;width:58px;height:18px;border-radius:60% 42% 52% 40%;transform:rotate(-7deg)}
+.jp-land.kyushu{left:9%;top:64%;width:53px;height:58px;clip-path:polygon(34% 0,76% 11%,100% 42%,77% 72%,63% 100%,27% 87%,0 54%,8% 22%);transform:rotate(10deg)}
+.jp-land.okinawa{left:7%;top:82%;width:8px;height:8px;border-radius:50%;box-shadow:15px 9px 0 #C7D8C1,29px 17px 0 #C7D8C1}
+.jp-trail{position:absolute;z-index:2;height:4px;border-radius:980px;background:repeating-linear-gradient(90deg,rgba(88,98,108,.25) 0 4px,transparent 4px 9px);transform-origin:left center;transition:background .45s var(--ease),box-shadow .45s var(--ease)}
+.jp-trail.walked{background:linear-gradient(90deg,#6B5AE3,#C74A72);box-shadow:0 0 0 3px rgba(107,90,227,.1),0 4px 10px rgba(107,90,227,.2)}
+.jp-trail.t1{left:68%;top:38%;width:52px;transform:rotate(154deg)}
+.jp-trail.t2{left:52%;top:45%;width:48px;transform:rotate(160deg)}
+.jp-trail.t3{left:37%;top:51%;width:39px;transform:rotate(154deg)}
+.jp-trail.t4{left:25%;top:57%;width:34px;transform:rotate(148deg)}
+.jp-city{position:absolute;z-index:4;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;color:#66747A;font-size:7.5px;font-weight:700;white-space:nowrap;transition:.4s var(--ease)}
+.jp-city::before{content:"";width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid #8FA0A6;box-shadow:0 2px 7px rgba(50,70,80,.18);transition:.4s var(--ease)}
+.jp-city.visited{color:#362A70}.jp-city.visited::before{background:#7C6AEF;border-color:#fff;box-shadow:0 0 0 4px rgba(124,106,239,.16),0 4px 9px rgba(64,48,130,.28)}
+.jp-city.tokyo{left:76%;top:37%}.jp-city.fuji{left:64%;top:42%}.jp-city.nagoya{left:53%;top:47%}.jp-city.kyoto{left:42%;top:52%}.jp-city.osaka{left:33%;top:57%}
+.explorer-traveler{position:absolute;z-index:7;left:76%;top:37%;transform:translate(-50%,-72%);filter:drop-shadow(0 7px 6px rgba(31,42,46,.24));transition:left .08s linear,top .08s linear}
+.explorer-traveler::after{content:"";position:absolute;left:50%;top:24px;width:6px;height:3px;border-radius:50%;background:rgba(47,58,63,.22);transform:translateX(-50%);filter:blur(1px)}
+.explorer-traveler span{display:block;font-size:24px;transform:scaleX(-1);transform-origin:center bottom;animation:explorer-walk .48s ease-in-out infinite alternate}
+@keyframes explorer-walk{to{transform:scaleX(-1) translateY(-3px) rotate(-4deg)}}
+.explorer-head{position:absolute;z-index:9;left:12px;right:12px;top:38px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.explorer-mode{display:flex;align-items:center;gap:8px;padding:8px 11px 8px 8px;border:1px solid rgba(255,255,255,.78);background:rgba(255,255,255,.72);backdrop-filter:blur(18px);border-radius:15px;box-shadow:0 12px 28px -18px rgba(36,48,53,.34)}
+.explorer-compass{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#7565E8,#D65E8B);font-size:14px;box-shadow:0 6px 14px -6px rgba(117,101,232,.56)}
+.explorer-mode strong{display:block;font-size:11px;line-height:1.1;letter-spacing:-.01em}.explorer-mode span{display:block;font-size:8.5px;color:var(--ink-3);margin-top:2px}
+.explorer-live{display:flex;align-items:center;gap:5px;font-size:8px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:7px 9px;border-radius:980px;background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.8);color:#2F7C42;backdrop-filter:blur(16px);box-shadow:0 8px 20px -15px rgba(36,48,53,.36)}
+.explorer-live::before{content:"";width:6px;height:6px;border-radius:50%;background:#4A9F5A;box-shadow:0 0 0 4px rgba(74,159,90,.13);animation:explorer-live 1.7s ease-in-out infinite}
+@keyframes explorer-live{50%{box-shadow:0 0 0 7px rgba(74,159,90,0)}}
+.explorer-hud{position:absolute;z-index:8;left:12px;right:12px;top:86px;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.explorer-metric{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:13px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.78);backdrop-filter:blur(16px);box-shadow:0 10px 24px -18px rgba(36,48,53,.38)}
+.explorer-metric .metric-icon{font-size:14px}.explorer-metric b{display:block;font-size:10.5px;font-variant-numeric:tabular-nums;line-height:1}.explorer-metric small{display:block;font-size:7.5px;color:var(--ink-3);margin-top:3px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.explorer-sheet{position:absolute;z-index:10;left:8px;right:8px;bottom:8px;padding:13px 14px 12px;background:rgba(255,255,255,.91);color:var(--ink);border:1px solid rgba(255,255,255,.94);border-radius:20px 20px 32px 32px;box-shadow:0 -18px 50px -30px rgba(29,46,54,.46);backdrop-filter:blur(22px)}
+.explorer-sheet::before{content:"";display:block;width:30px;height:3px;border-radius:2px;background:var(--line-2);margin:-5px auto 9px}
+.explorer-kicker{font-size:8.5px;font-weight:800;color:var(--sakura);text-transform:uppercase;letter-spacing:.09em}
+.explorer-place{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:4px}
+.explorer-place strong{font-size:15px;letter-spacing:-.025em;line-height:1.15}.explorer-distance{font-size:9px;font-weight:700;color:var(--accent-strong);white-space:nowrap}
+.explorer-meta{font-size:9px;color:var(--ink-2);margin-top:4px}
+.explorer-xp{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;font-size:8.5px;font-weight:700;color:var(--ink-2)}
+.explorer-xp .track{height:7px;border-radius:6px;background:#E9E5F1;overflow:hidden}.explorer-xp .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#7C6AEF,#FF8FAB,#E8A44C);transition:width 1.2s var(--ease);box-shadow:0 0 10px rgba(255,143,171,.3)}
+.explorer-stats{display:flex;gap:6px;margin-top:8px}.explorer-stat{flex:1;font-size:8px;font-weight:700;color:var(--ink-2);padding:5px 7px;border-radius:9px;background:rgba(241,239,247,.78);border:1px solid var(--line);white-space:nowrap;text-align:center}
 .toast{background:rgba(74,159,90,.10);border:1px solid rgba(74,159,90,.28);border-radius:12px;padding:9px 11px;font-size:11px;font-weight:600;color:var(--matcha);display:flex;gap:7px;align-items:center}
 .tool{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:10px}
 .tool .lbl{font-size:9.5px;color:var(--ink-3);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
@@ -206,14 +253,6 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 .hero-cta{display:inline-flex;gap:14px;margin-top:32px;flex-wrap:wrap;justify-content:center;align-items:center}
 
 /* Award badges — Rotori honest equivalents (Sign in w/ Apple, Zero analytics) */
-.hero-awards{display:flex;justify-content:center;gap:clamp(28px,5vw,64px);margin-top:48px;flex-wrap:wrap}
-.hero-award{display:flex;gap:12px;align-items:center;text-align:left}
-.hero-award .aw-ic{width:42px;height:42px;border-radius:11px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-size:22px;flex:none;box-shadow:0 6px 16px -8px rgba(15,10,30,.12)}
-.hero-award .aw-t{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
-.hero-award .aw-s{font-size:12px;color:var(--ink-3);font-weight:500;margin-top:3px;letter-spacing:.02em}
-.hero-award .aw-s::before{content:"《 ";color:var(--ink-3);opacity:.7}
-.hero-award .aw-s::after{content:" 》";color:var(--ink-3);opacity:.7}
-
 /* Stage: centered phone + floating notification cards */
 .hero-stage{position:relative;width:min(1120px,84vw);margin:40px auto 0;padding:0 0 24px;display:flex;flex-direction:column;align-items:center;overflow:visible;isolation:isolate;transform:translateX(6.5%)}
 .hero-stage-phone{position:relative;z-index:5;display:flex;justify-content:center}
@@ -243,20 +282,26 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 .hn .hn-t{font-weight:600;color:var(--ink);font-size:clamp(14px,1.1vw,18px);letter-spacing:-.015em;line-height:1.22;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:capitalize}
 .hn .hn-s{font-size:clamp(12px,.9vw,15px);color:var(--ink-2);margin-top:4px;line-height:1.32;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:capitalize}
 .hn .hn-x{font-size:11px;font-weight:700;color:var(--ink-3);flex:none;padding-left:6px;font-variant-numeric:tabular-nums;text-transform:capitalize}
+.hn-2,.hn-3,.hn-6{
+flex-direction: row-reverse;
+    text-align: left;
+    padding-right: 15px;
+    padding-left: 90px;
+}
 
 /* Opacity tiers — Flighty: sharp / ambient / ghost */
 .hn.t1{opacity:1}
 .hn.t2{opacity:.45;box-shadow:0 14px 30px -18px rgba(15,10,30,.16),0 1px 2px rgba(15,10,30,.02)}
-.hn.t3{opacity:.20;box-shadow:none}
+.hn.t3{opacity:.20;box-shadow:none;    padding-left: 147px;}
 
 /* Positions — featured cards flank the phone; ambient/ghost stack further out */
-.hn-1{left:5%;top:25%}      /* t1 — Discovery success */
-.hn-2{right:18%;top:5%}     /* t1 — Transit clarity */
-.hn-3{right:18%;top:52%}    /* t1 — Weather intel */
+.hn-1{left:5%;top:25%;padding-left: 120px}      /* t1 — Discovery success */
+.hn-2{right:17%;top:5%}     /* t1 — Transit clarity */
+.hn-3{right:15%;top:52%;padding-left: 145px;}    /* t1 — Weather intel */
 .hn-4{left:5%;top:4%}       /* t2 — Badge earned */
-.hn-5{left:5%;top:48%}      /* t2 — Luggage */
-.hn-6{right:18%;top:28%}    /* t2 — Reminder */
-.hn-7{left:5%;top:71%}      /* t3 — Widget ghost */
+.hn-5{left:2%;top:48%}      /* t2 — Luggage */
+.hn-6{right:15%;top:28%;padding-left: 115px}    /* t2 — Reminder */
+.hn-7{left:3%;top:71%}      /* t3 — Widget ghost */
 .hn-8{right:18%;top:74%}    /* t3 — Fitness ghost */
 
 /* Very subtle drift — cards feel alive but never distract */
@@ -282,7 +327,6 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 }
 @media(max-width:720px){
   .hero-nots{display:none}
-  .hero-awards{gap:28px;margin-top:36px}
   .hero-stage{width:calc(100% - 32px);margin-top:36px;transform:none}
   .hand-mobile-wrap{--hw:min(500px,96vw)}
 }
@@ -570,11 +614,12 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 #bridge .b-phone{position:relative;z-index:2;transition:transform .1s linear;margin-top:3vh;flex-shrink:1}
 .bridge-screen{position:absolute;inset:0;opacity:0;transition:opacity .5s var(--ease)}
 .bridge-screen.on{opacity:1}
-.badge-pop{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%) scale(.4);opacity:0;z-index:8;display:flex;flex-direction:column;align-items:center;gap:8px}
+.badge-pop{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%) scale(.4);opacity:0;z-index:8;display:flex;align-items:center;gap:11px;padding:12px 14px 12px 12px;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.82);border-radius:20px;box-shadow:0 26px 70px -24px rgba(15,10,30,.54);backdrop-filter:blur(18px)}
 .badge-pop.on{animation:pop .9s var(--ease-spring) forwards}
 @keyframes pop{40%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-.badge-pop .b{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;font-size:42px;background:var(--grad-sakura);color:#fff;box-shadow:0 20px 50px -12px rgba(199,74,114,.5)}
-.badge-pop .cap{font-weight:600;font-size:15px;color:var(--ink);background:var(--card);padding:6px 12px;border-radius:980px;border:1px solid var(--line-2)}
+.badge-pop .b{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:28px;background:radial-gradient(circle at 32% 24%,#FFD9E5,#E56A98 62%,#A93D68);color:#fff;box-shadow:0 14px 30px -12px rgba(199,74,114,.68);border:2px solid rgba(255,255,255,.75);position:relative}
+.badge-pop .b::after{content:"✦";position:absolute;right:-5px;top:-8px;color:var(--gold);font-size:16px;filter:drop-shadow(0 2px 3px rgba(15,10,30,.2))}
+.badge-pop .cap{color:var(--ink);min-width:126px}.badge-pop .cap small{display:block;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--sakura);margin-bottom:3px}.badge-pop .cap strong{display:block;font-size:14px;letter-spacing:-.02em}.badge-pop .cap .matcha-tx{display:block;font-size:10px;font-weight:800;margin-top:3px}
 .matcha-tx{color:var(--matcha)}
 @media(max-width:600px){#bridge{height:250svh}#bridge .stage{padding-top:5vh}#bridge .b-phone{--w:220px;margin-top:3vh}#bridge .b-copy .h-1{font-size:clamp(24px,7vw,36px)}}
 
@@ -634,17 +679,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
     <div class="hero-cta">
       <a class="btn btn-primary" href="#final" data-i18n="hero.cta1">App Store'da indir</a>
       <a class="btn btn-ghost" href="#problem" data-i18n="hero.cta2">Nasıl çalışıyor ↓</a>
-    </div>
-
-    <div class="hero-awards" aria-label="Trust markers">
-      <div class="hero-award">
-        <div class="aw-ic">🍎</div>
-        <div><div class="aw-t" data-i18n="hero.aw1t">Sign in with Apple</div><div class="aw-s" data-i18n="hero.aw1s">Hide My Email</div></div>
-      </div>
-      <div class="hero-award">
-        <div class="aw-ic">🔇</div>
-        <div><div class="aw-t" data-i18n="hero.aw2t">Sıfır analitik</div><div class="aw-s" data-i18n="hero.aw2s">Konum cihazda</div></div>
-      </div>
     </div>
 
     <div class="hero-stage">
@@ -922,21 +956,34 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
           <div class="tl"><span class="tm">14:00</span><div><div class="ti" data-i18n="bridge.bs1.c1">🍜 Ramen molası</div><div class="td" data-i18n="bridge.bs1.c">Öğle · yerel</div></div></div>
         </div>
       </div></div>
-      <div class="bridge-screen" id="bs2"><div class="scr">
-        <div class="scr-top grad"><div class="t-title" data-i18n="bridge.bs2.title">🧭 Canlı harita</div><div class="t-sub" data-i18n="bridge.bs2.sub">Kyoto · buradasın</div></div>
-        <div class="scr-body" style="padding:10px">
-          <div class="map-mini"><div class="grid"></div>
-            <span class="pin" style="left:20%;top:30%">⛩️</span><span class="pin dim" style="left:66%;top:24%">🎋</span><span class="pin dim" style="left:52%;top:66%">🍜</span>
-            <div class="here" style="left:44%;top:52%"></div>
-          </div>
-          <div class="xp" style="margin-top:10px"><span>Lv 3</span><div class="track"><div class="fill" id="bXp" style="width:48%"></div></div><span class="tnum">240 XP</span></div>
+      <div class="bridge-screen" id="bs2"><div class="explorer-scr">
+        <div class="explorer-map" id="explorerMap">
+          <i class="jp-land hokkaido"></i><i class="jp-land honshu-a"></i><i class="jp-land honshu-b"></i><i class="jp-land honshu-c"></i><i class="jp-land shikoku"></i><i class="jp-land kyushu"></i><i class="jp-land okinawa"></i>
+          <i class="jp-trail t1"></i><i class="jp-trail t2"></i><i class="jp-trail t3"></i>
+          <span class="jp-city tokyo visited">Tokyo</span><span class="jp-city fuji">Fuji</span><span class="jp-city nagoya">Nagoya</span><span class="jp-city kyoto">Kyoto</span>
+          <div class="explorer-traveler" id="explorerTraveler"><span>🚶</span></div>
+        </div>
+        <div class="explorer-head">
+          <div class="explorer-mode"><div class="explorer-compass">🧭</div><div><strong data-i18n="bridge.bs2.title">Kaşif modu</strong><span data-i18n="bridge.bs2.sub">Kyoto · Gion</span></div></div>
+          <div class="explorer-live" data-i18n="bridge.bs2.live">Canlı</div>
+        </div>
+        <div class="explorer-hud">
+          <div class="explorer-metric"><span class="metric-icon">👟</span><div><b id="explorerSteps">12.840</b><small data-i18n="bridge.bs2.steps">adım</small></div></div>
+          <div class="explorer-metric"><span class="metric-icon">✦</span><div><b id="explorerXp">240 XP</b><small data-i18n="bridge.bs2.earned">bugün kazanıldı</small></div></div>
+        </div>
+        <div class="explorer-sheet">
+          <div class="explorer-kicker" data-i18n="bridge.bs2.nearby">Yakındaki keşif</div>
+          <div class="explorer-place"><strong data-i18n="bridge.bs2.place">Yasaka Pagodası</strong><span class="explorer-distance" data-i18n="bridge.bs2.distance">3 dk yürü →</span></div>
+          <div class="explorer-meta" data-i18n="bridge.bs2.meta">Gün batımına 34 dk · şimdi gitmek için ideal</div>
+          <div class="explorer-xp"><span data-i18n="bridge.bs2.level">SEVİYE 3</span><div class="track"><div class="fill" id="bXp" style="width:48%"></div></div><span id="explorerLevelXp">240 / 300 XP</span></div>
+          <div class="explorer-stats"><div class="explorer-stat" data-i18n="bridge.bs2.count">✦ 12 / 18 keşif</div><div class="explorer-stat" data-i18n="bridge.bs2.offline">↓ Çevrimdışı harita</div></div>
         </div>
       </div></div>
     </div>
   </div></div>
   <div class="badge-pop" id="badgePop" aria-hidden="true">
     <div class="b">⛩️</div>
-    <div class="cap"><span data-i18n="b.kyoto-roam.t">Kyoto Kâşifi</span> <span class="matcha-tx">+25 XP</span></div>
+    <div class="cap"><small data-i18n="bridge.badge.new">Yeni rozet açıldı</small><strong data-i18n="b.kyoto-roam.t">Kyoto Kâşifi</strong><span class="matcha-tx">+25 XP · LEVEL UP</span></div>
   </div>
 </div></section>
 
@@ -1287,10 +1334,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
     'hero.m2':{tr:'Ücretsiz',en:'Free'},
     'hero.m3':{tr:'Uçak modunda çalışır',en:'Works in airplane mode'},
     // Hero — awards, notifications, tab-bar
-    'hero.aw1t':{tr:'Sign in with Apple',en:'Sign in with Apple'},
-    'hero.aw1s':{tr:'Hide My Email',en:'Hide My Email'},
-    'hero.aw2t':{tr:'Sıfır analitik',en:'Zero analytics'},
-    'hero.aw2s':{tr:'Konum cihazda',en:'Location on device'},
     'hero.hn1t':{tr:'Fushimi Inari keşfedildi',en:'Fushimi Inari discovered'},
     'hero.hn1s':{tr:'+25 XP · Lv 4',en:'+25 XP · Lv 4'},
     'hero.hn2t':{tr:'Kyoto Kâşifi',en:'Kyoto Explorer'},
@@ -1408,14 +1451,27 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
     // BRIDGE
     'bridge.eyebrow':{tr:'Plandan yolculuğa',en:'From planning to travel'},
     'bridge.title.plan':{tr:'Planın hazır.<br>Şimdi yolculuk başlasın.',en:'Your plan is ready.<br>Now the trip can begin.'},
-    'bridge.title.climax':{tr:'Sıradaki durak hazır.',en:'Your next stop is ready.'},
+    'bridge.title.climax':{tr:'Şehir artık keşfedilmeyi bekliyor.',en:'The city is waiting to be discovered.'},
     'bridge.bs1.title':{tr:'📖 Rehber · Gün 6',en:'📖 Guide · Day 6'},
     'bridge.bs1.a':{tr:'⛩️ 10.000 torii · sabah sakin',en:'⛩️ 10,000 torii · quiet morning'},
     'bridge.bs1.b':{tr:'🎋 Geleneksel sokaklar',en:'🎋 Traditional streets'},
     'bridge.bs1.c1':{tr:'🍜 Ramen molası',en:'🍜 Ramen break'},
     'bridge.bs1.c':{tr:'Öğle · yerel',en:'Lunch · local'},
-    'bridge.bs2.title':{tr:'🧭 Canlı harita',en:'🧭 Live map'},
-    'bridge.bs2.sub':{tr:'Kyoto · buradasın',en:'Kyoto · you are here'},
+    'bridge.bs2.title':{tr:'Kaşif modu',en:'Explorer mode'},
+    'bridge.bs2.sub':{tr:'Japonya · canlı rota',en:'Japan · live route'},
+    'bridge.bs2.live':{tr:'Canlı',en:'Live'},
+    'bridge.bs2.steps':{tr:'adım',en:'steps'},
+    'bridge.bs2.earned':{tr:'bugün kazanıldı',en:'earned today'},
+    'bridge.bs2.signal':{tr:'Yeni keşif sinyali',en:'New discovery signal'},
+    'bridge.bs2.signalmeta':{tr:'180 m · doğu yönünde',en:'180 m · heading east'},
+    'bridge.bs2.nearby':{tr:'Yakındaki keşif',en:'Discovery nearby'},
+    'bridge.bs2.place':{tr:'Yasaka Pagodası',en:'Yasaka Pagoda'},
+    'bridge.bs2.distance':{tr:'3 dk yürü →',en:'3 min walk →'},
+    'bridge.bs2.meta':{tr:'Gün batımına 34 dk · şimdi gitmek için ideal',en:'34 min to sunset · perfect time to go'},
+    'bridge.bs2.level':{tr:'SEVİYE 3',en:'LEVEL 3'},
+    'bridge.bs2.count':{tr:'✦ 12 / 18 keşif',en:'✦ 12 / 18 discoveries'},
+    'bridge.bs2.offline':{tr:'↓ Çevrimdışı harita',en:'↓ Offline map'},
+    'bridge.badge.new':{tr:'Yeni rozet açıldı',en:'New badge unlocked'},
 
     // TIMING
     'time.eyebrow':{tr:'06 · Doğru saat',en:'06 · Right time'},
@@ -1783,8 +1839,23 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
   const bridge=$('bridge'),arcPath=$('arcPath'),plane=$('plane');
   const bs1=$('bs1'),bs2=$('bs2'),badgePop=$('badgePop'),bXp=$('bXp');
   const bPhone=document.querySelector('#bridge .b-phone'),stage=document.querySelector('#bridge .stage');
+  const explorerTraveler=$('explorerTraveler'),explorerSteps=$('explorerSteps'),explorerXp=$('explorerXp'),explorerLevelXp=$('explorerLevelXp');
+  const explorerCities=[...document.querySelectorAll('#explorerMap .jp-city')],explorerTrails=[...document.querySelectorAll('#explorerMap .jp-trail')];
+  const explorerPoints=[[76,37],[64,42],[53,47],[42,52]];
   let arcLen=0;try{arcLen=arcPath.getTotalLength();arcPath.style.strokeDasharray=arcLen;arcPath.style.strokeDashoffset=arcLen;}catch(e){}
   let poppedBadge=false;
+  function explorerAt(p){
+    p=clamp(p,0,1);
+    if(explorerTraveler){const n=explorerPoints.length-1,s=p*n,i=Math.min(n-1,Math.floor(s)),u=s-i;
+      explorerTraveler.style.left=lerp(explorerPoints[i][0],explorerPoints[i+1][0],u)+'%';
+      explorerTraveler.style.top=lerp(explorerPoints[i][1],explorerPoints[i+1][1],u)+'%';}
+    const steps=Math.round(12840+4360*p),xp=Math.round(240+25*p);
+    if(explorerSteps)explorerSteps.textContent=steps.toLocaleString(curLang==='tr'?'tr-TR':'en-US');
+    if(explorerXp)explorerXp.textContent=xp+' XP';
+    if(explorerLevelXp)explorerLevelXp.textContent=xp+' / 300 XP';
+    explorerCities.forEach((city,i)=>city.classList.toggle('visited',p>=i/(explorerCities.length-1)-.025));
+    explorerTrails.forEach((trail,i)=>trail.classList.toggle('walked',p>=(i+1)/explorerTrails.length-.12));
+  }
   function bridgeScrub(){
     if(!bridge||!stage)return;
     const total=bridge.offsetHeight-innerHeight;
@@ -1797,11 +1868,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
       else plane.style.opacity=0;}
     if(!reduce){const shrink=1-0.12*clamp((prog-0.15)/0.35,0,1);bPhone.style.transform='scale('+shrink+')';}
     const live=prog>0.55;bs1.classList.toggle('on',!live);bs2.classList.toggle('on',live);
-    if(prog>0.6){const d=clamp((prog-0.6)/0.18,0,1);bXp.style.width=(48+42*d)+'%';}
-    if(prog>0.74&&!poppedBadge){poppedBadge=true;badgePop.classList.add('on');}
+    const walk=clamp((prog-0.56)/0.25,0,1);explorerAt(walk);if(bXp)bXp.style.width=(48+42*walk)+'%';
+    if(prog>0.81&&!poppedBadge){poppedBadge=true;badgePop.classList.add('on');}
     if(prog<0.6&&poppedBadge){poppedBadge=false;badgePop.classList.remove('on');}
-    if(prog>0.78){if(bridgeTitleState!==2){bridgeTitleState=2;setBridgeTitle();}}
-    else if(prog<0.72){if(bridgeTitleState!==1){bridgeTitleState=1;setBridgeTitle();}}
+    if(prog>0.84){if(bridgeTitleState!==2){bridgeTitleState=2;setBridgeTitle();}}
+    else if(prog<0.76){if(bridgeTitleState!==1){bridgeTitleState=1;setBridgeTitle();}}
   }
 
   /* ===================== bg + scroll engine ===================== */
