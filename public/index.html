@@ -240,7 +240,7 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 .hn .hn-ic.jr    {background:linear-gradient(135deg,#2C7BC0,#1B5A9E);border-radius:12px}
 .hn .hn-ic.yamato{background:linear-gradient(160deg,#2A2635,#0F0A1E);border-radius:10px}
 .hn .hn-ic.violet{background:var(--grad-brand)}
-.hn .hn-m{min-width:0;flex:1}
+.hn .hn-m{min-width:0;flex:1;padding-left: 50px}
 .hn .hn-t{font-weight:600;color:var(--ink);font-size:clamp(14px,1.1vw,18px);letter-spacing:-.015em;line-height:1.22;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:capitalize}
 .hn .hn-s{font-size:clamp(12px,.9vw,15px);color:var(--ink-2);margin-top:4px;line-height:1.32;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:capitalize}
 .hn .hn-x{font-size:11px;font-weight:700;color:var(--ink-3);flex:none;padding-left:6px;font-variant-numeric:tabular-nums;text-transform:capitalize}
@@ -252,17 +252,13 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 
 /* Positions — featured cards flank the phone; ambient/ghost stack further out */
 .hn-1{left:5%;top:25%}      /* t1 — Discovery success */
-.hn-2{right:18%;top:5%}     /* t1 — Transit clarity */
+.hn-2{right:21%;top:5%}     /* t1 — Transit clarity */
 .hn-3{right:15%;top:52%}    /* t1 — Weather intel */
 .hn-4{left:5%;top:4%}       /* t2 — Badge earned */
 .hn-5{left:5%;top:48%}      /* t2 — Luggage */
 .hn-6{right:18%;top:28%}    /* t2 — Reminder */
 .hn-7{left:5%;top:71%}      /* t3 — Widget ghost */
 .hn-8{right:18%;top:74%}    /* t3 — Fitness ghost */
-
-/* Sağdaki üç kart: ikon sağda, metin solda */
-.hn-2,.hn-3,.hn-6{flex-direction:row-reverse;padding:15px 15px 15px 20px}
-.hn-2 .hn-m,.hn-3 .hn-m,.hn-6 .hn-m{text-align:left}
 
 /* Very subtle drift — cards feel alive but never distract */
 .hn.d-a{animation:hn-drift-a 12s ease-in-out infinite}
@@ -277,7 +273,6 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
   .hn{width:clamp(250px,30vw,340px);padding:14px 17px 14px 14px}
   .hn .hn-ic{width:40px;height:40px;font-size:20px}
   .hn .hn-t{font-size:13px}.hn .hn-s{font-size:11.5px}
-  .hn-2,.hn-3,.hn-6{padding:14px 14px 14px 17px}
   .hn-1{left:5%;top:25%}.hn-2{right:12%;top:6%}.hn-3{right:12%;top:53%}
   .hn-4{left:5%;top:5%}.hn-5{left:5%;top:49%}.hn-6{right:12%;top:29%}
   .hn-7,.hn-8{display:none}
@@ -676,8 +671,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
       <div class="hero-stage-phone">
         <div class="hand-mobile-wrap float">
           <picture>
-              <source srcset="img/main-hand-rotori.avif" type="image/avif" />
-              <img class="hand-mobile" src="img/main-hand-rotori.avif"
+            <source srcset="img/main-hand-phone.avif" type="image/avif" />
+            <img class="hand-mobile" src="img/main-hand-phone.png"
                  width="930" height="1260"
                  alt="Rotori uygulaması — Japonya günlük plan"
                  loading="eager" decoding="async" fetchpriority="high" />
