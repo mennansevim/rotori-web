@@ -282,7 +282,14 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
   .hn-1,.hn-2,.hn-3{opacity:.85}
 }
 @media(max-width:720px){
-  .hero-nots{display:none}
+  .hero-nots{display:block;inset:4% 0 12%}
+  .hn{width:clamp(168px,44vw,220px);padding:10px 12px;border-radius:14px;gap:10px}
+  .hn .hn-ic{width:30px;height:30px;font-size:16px}
+  .hn .hn-t{font-size:12px}
+  .hn .hn-s{font-size:10px}
+  .hn-1{left:-4%;top:26%}
+  .hn-2{right:-4%;top:10%}
+  .hn-3{right:-4%;top:58%}
   .hero-awards{gap:28px;margin-top:36px}
   .hero-stage{width:calc(100% - 32px);margin-top:36px;transform:none}
   .hand-mobile-wrap{--hw:min(500px,96vw)}
