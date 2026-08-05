@@ -230,7 +230,7 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
   -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 92%,rgba(0,0,0,.72) 97%,rgba(0,0,0,0) 100%);
   mask-image:linear-gradient(180deg,#000 0%,#000 92%,rgba(0,0,0,.72) 97%,rgba(0,0,0,0) 100%)}
 
-.hero-nots{position:absolute;inset:3% 0 7%;pointer-events:none;z-index:2}
+.hero-nots{display:none}
 
 /* Notification card — Flighty-style: 3 opacity tiers, colored circular icons,
    two-line bold title / gray subtitle, generous internal spacing. */
@@ -692,9 +692,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
         </div>
       </div>
 
-      <div class="hero-embedded-badges" aria-hidden="true">
-        <span class="heb heb-torii">⛩️</span>
-      </div>
 
       <div class="hero-tabbar" role="tablist" aria-label="Yolculuk aşamaları">
         <a class="htb on" href="#planning" role="tab" aria-selected="true" aria-controls="planning" data-i18n="hero.tab1">✈️ Planla</a>
