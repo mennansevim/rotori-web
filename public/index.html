@@ -227,7 +227,7 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
   -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 92%,rgba(0,0,0,.72) 97%,rgba(0,0,0,0) 100%);
   mask-image:linear-gradient(180deg,#000 0%,#000 92%,rgba(0,0,0,.72) 97%,rgba(0,0,0,0) 100%)}
 
-.hero-nots{display:none}
+.hero-nots{position:absolute;inset:3% 0 7%;pointer-events:none;z-index:2}
 
 /* Notification card — Flighty-style: 3 opacity tiers, colored circular icons,
    two-line bold title / gray subtitle, generous internal spacing. */
@@ -247,8 +247,8 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 
 /* Opacity tiers — Flighty: sharp / ambient / ghost */
 .hn.t1{opacity:1}
-.hn.t2{opacity:.45;box-shadow:0 14px 30px -18px rgba(15,10,30,.16),0 1px 2px rgba(15,10,30,.02)}
-.hn.t3{opacity:.20;box-shadow:none}
+.hn.t2{opacity:.86;box-shadow:0 16px 32px -18px rgba(15,10,30,.18),0 1px 2px rgba(15,10,30,.03)}
+.hn.t3{display:none}
 
 /* Positions — featured cards flank the phone; ambient/ghost stack further out */
 .hn-1{left:5%;top:25%}      /* t1 — Discovery success */
