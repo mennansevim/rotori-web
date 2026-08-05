@@ -219,6 +219,10 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
 .hero-stage{position:relative;width:min(1120px,84vw);margin:40px auto 0;padding:0 0 24px;display:flex;flex-direction:column;align-items:center;overflow:visible;isolation:isolate;transform:translateX(6.5%)}
 .hero-stage-phone{position:relative;z-index:5;display:flex;justify-content:center}
 .hero-stage .phone{--w:min(340px,80vw)}
+.hero-embedded-badges{position:absolute;inset:0;pointer-events:none;z-index:7}
+.hero-embedded-badges .heb{position:absolute;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;color:#fff;font-size:24px;line-height:1;box-shadow:0 12px 26px -12px rgba(15,10,30,.32),inset 0 0 0 1px rgba(255,255,255,.14)}
+.hero-embedded-badges .heb-ticket{right:30%;top:44%;background:linear-gradient(135deg,#E3A64E,#D28A1E)}
+.hero-embedded-badges .heb-torii{right:30%;top:67%;background:linear-gradient(135deg,#DB6A8E,#C74A72)}
 /* El + telefon SVG mockup — CSS iPhone yerine. Alt kısımda el "yok olur" gibi
    soft gradient ile hero arka planına karışır, tasarım bütünlüğü için. */
 .hand-mobile-wrap{--hw:min(460px,70vw);width:var(--hw);position:relative;z-index:5;display:flex;justify-content:center;filter:drop-shadow(0 28px 40px rgba(15,10,30,.21))}
@@ -290,6 +294,9 @@ h1,h2,h3{letter-spacing:-.035em;line-height:1.04;font-weight:600}
   .hn-1{left:-4%;top:26%}
   .hn-2{right:-4%;top:10%}
   .hn-3{right:-4%;top:58%}
+  .hero-embedded-badges .heb{width:42px;height:42px;border-radius:12px;font-size:18px}
+  .hero-embedded-badges .heb-ticket{right:17%;top:43%}
+  .hero-embedded-badges .heb-torii{right:17%;top:66%}
   .hero-awards{gap:28px;margin-top:36px}
   .hero-stage{width:calc(100% - 32px);margin-top:36px;transform:none}
   .hand-mobile-wrap{--hw:min(500px,96vw)}
@@ -685,6 +692,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 max(60px,env(safe-area-in
                  loading="eager" decoding="async" fetchpriority="high" />
           </picture>
         </div>
+      </div>
+
+      <div class="hero-embedded-badges" aria-hidden="true">
+        <span class="heb heb-ticket">🎫</span>
+        <span class="heb heb-torii">⛩️</span>
       </div>
 
       <div class="hero-tabbar" role="tablist" aria-label="Yolculuk aşamaları">
